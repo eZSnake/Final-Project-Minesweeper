@@ -17,11 +17,13 @@ public class Cell {
      *               and has 0 adjacent mines.
      */
     public  Cell() {
+	    
     }
 
     /* Mark this cell as containing a mine
      */
     public void setMine() {
+	    
     }
     
     /* Helper method which returns a char value corresponding to the integer parameter
@@ -37,28 +39,32 @@ public class Cell {
      *
      */
     public char getVal() {
+	    
     } 
 
     /* Mark this cell as revealed.
      */
     public void reveal() {
-
+	    
     }
 
 	/* Store the number of neighboring mines there are to this cell.
 	 */
 	public void setAdjacentMines(int numMines) {
+		
     }
 
 	/* Returns the number of neighboring mines there are to this cell.
 	 */
 	public int getAdjacentMines() {
+		
     }
     
     /* Checks if the cell is a mine or not
      * @return   true if it is a mine, false if it is not a mine
      */
     public boolean isMine() {
+	    
     }
 }
 
