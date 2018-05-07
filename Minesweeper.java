@@ -20,6 +20,7 @@ public class Minesweeper {
      *      the need for ArrayOutOfBounds checking at the edges.
      */
     public static void initGrid(int rows, int columns) {
+        
     }
     
     /*
@@ -28,12 +29,14 @@ public class Minesweeper {
      * @param amountMines   The number of mines to be set in the grid.
      */
     public static void disperseMines(int amountMines) {
+        
     }
 
     /*
      * Updates each cell with the number of adjacent cells with mines
      */
     public static void adjacentMines() {
+        
     }
  
     /*
@@ -86,13 +89,12 @@ public class Minesweeper {
      * @return  true if game over, false if not
      */
     public static boolean checkGameOver() {
-
+        
     }
 
     /* Add other static methods as necessary */
     
     public static void main(String[] args) { 
-
+        
     }
 }
-
