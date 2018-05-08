@@ -8,6 +8,9 @@ public class Minesweeper {
     
     // Add other static variables and constants you might need
     private static Cell[][] grid;
+    private int myRow;
+    private int myColumn;
+    private int myAmMines;
 
     /* 
      * Create the grid and place mines in random locations.
@@ -20,7 +23,9 @@ public class Minesweeper {
      *      the need for ArrayOutOfBounds checking at the edges.
      */
     public static void initGrid(int rows, int columns) {
-        
+        grid[rows + 2][columns + 2];
+        myRow = rows;
+        myColumn = columns;
     }
     
     /*
@@ -29,22 +34,56 @@ public class Minesweeper {
      * @param amountMines   The number of mines to be set in the grid.
      */
     public static void disperseMines(int amountMines) {
-        
+        myAmMines = amountMines;
+        for (int i = 0; i < amountMines; i++) {
+            Random rowr = new Random();
+            Random columnc = new Random();
+            grid[rowr.nextInt(myRow + 1)][columnc.nextInt(myColumn + 1)];
+        }
     }
 
     /*
      * Updates each cell with the number of adjacent cells with mines
      */
     public static void adjacentMines() {
-        
+        int mines = 0;
+        for (int i = 0; i < myRow; i++) {
+            for (int j = 0; j < myColumn; j++) {
+                if (grid[i - 1][j - 1] == *) {
+                    mines++;
+                }
+                if (grid[i][j - 1] == *) {
+                    mines++;
+                }
+                if (grid[i + 1][j - 1] == *) {
+                    mines++;
+                }
+                if (grid[i + 1][j] == *) {
+                    mines++;
+                }
+                if (grid[i + 1][j + 1] == *) {
+                    mines++;
+                }
+                if (grid[i][j + 1] == *) {
+                    mines++;
+                }
+                if (grid[i - 1][j + 1] == *) {
+                    mines++;
+                }
+                if (grid[i - 1][j] == *) {
+                    mines++;
+                }
+                grid[i][j] = mines;
+            }
+        }
     }
  
     /*
      * Method to print Minesweeper grid
      */
     private static void printGrid() {
-        for (/* Your code here */) {
-            for (/* Your code here */) {
+        for (int i = 0; i < myRow; i++) {
+            for (int j = 0; j < myColumn; j++) {
                 System.out.print(grid[i][j] + " ");
             }
             System.out.println();
@@ -89,7 +128,11 @@ public class Minesweeper {
      * @return  true if game over, false if not
      */
     public static boolean checkGameOver() {
-        
+        if (myRow * myColumn - myAmMines == ) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     /* Add other static methods as necessary */
