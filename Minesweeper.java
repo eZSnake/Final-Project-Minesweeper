@@ -14,7 +14,7 @@ public class Minesweeper {
     private int myAmMines;
     private int[][] minePlaces;
     private int[][] selectedCells;
-	private int runs = 0;
+    private int runs = 0;
 
     /* 
      * Create the grid and place mines in random locations.
