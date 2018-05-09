@@ -11,6 +11,8 @@ public class Minesweeper {
     private int myRow;
     private int myColumn;
     private int myAmMines;
+    private int minePlaces [][];
+    private int selectedCells [][];
 
     /* 
      * Create the grid and place mines in random locations.
@@ -35,10 +37,14 @@ public class Minesweeper {
      */
     public static void disperseMines(int amountMines) {
         myAmMines = amountMines;
+        int minePlaces [][] = [amountMines][2];
         for (int i = 0; i < amountMines; i++) {
             Random rowr = new Random();
             Random columnc = new Random();
-            grid[rowr.nextInt(myRow + 1)][columnc.nextInt(myColumn + 1)];
+            int randRow = rowr.nextInt(myRow + 1);
+            int randCol = columnc.nextInt(myColumn + 1);
+            grid[randRow][randCol] = MINE;
+            minePlaces[][] = [randRow][randCol];
         }
     }
 
@@ -95,7 +101,14 @@ public class Minesweeper {
      * have been revealed.
      */
     public static void revealGrid() {
-
+        for (int i = 0; i < myRow; i++){
+            for (int j = 0; j < myColumn; j++){
+                if (minePlaces[j][j] = grid[i][j]) {
+                    grid[i][j] = "*";
+                }
+                if (grid[i][j] = 
+            }
+        }
     }
 
     /* 
@@ -120,7 +133,7 @@ public class Minesweeper {
          * Print Minesweeper grid after handling user input
          *
          */
-       
+        if (grid[row][column] ==  
     }
 
     /*
@@ -128,7 +141,7 @@ public class Minesweeper {
      * @return  true if game over, false if not
      */
     public static boolean checkGameOver() {
-        if (myRow * myColumn - myAmMines == ) {
+        if (myRow * myColumn - myAmMines == 0) {
             return false;
         } else {
             return true;
@@ -148,5 +161,12 @@ public class Minesweeper {
         int mine = Integer.parseInt(scanner.nextLine());
         disperseMines(mine);
         printGrid();
+        while (checkGameOver) {
+            System.out.print("Select the x coordinate: ");
+            int xCord = Integer.parseInt(scanner.nextLine());
+            System.out.print("Select the y coordinate: ");
+            int yCord = Integer.parseInt(scanner.nextLine());
+            selectedCells[][] = [xCord][yCord];
+        }
     }
 }
