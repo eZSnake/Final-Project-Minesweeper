@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Minesweeper { 
 
@@ -13,6 +14,7 @@ public class Minesweeper {
     private int myAmMines;
     private int[][] minePlaces;
     private int[][] selectedCells;
+	private int runs = 0;
 
     /* 
      * Create the grid and place mines in random locations.
@@ -25,8 +27,8 @@ public class Minesweeper {
      *      the need for ArrayOutOfBounds checking at the edges.
      */
     public static void initGrid(int rows, int columns) {
-        grid[rows + 1][columns + 1];
-        selectedCells[rows * columns][2];
+		Cell[][] grid = new Cell[rows + 1][columns + 1];
+        int[][] selectedCells = new int[rows * columns][2];
         myRow = rows;
         myColumn = columns;
     }
@@ -145,13 +147,19 @@ public class Minesweeper {
      * @return  true if game over, false if not
      */
     public static boolean checkGameOver() {
-        if (myRow * myColumn - myAmMines == 0) {
-            return false;
-        } else {
+		for (int i = 0; i < minePlaces.length; i++) {
+			for (int j = 0; j < selectedCell.length; j++) {
+				if (selectedCell[i][0] == minePlaces[j][0] && selectedCell[i][1] == minePlaces[j][1]) {
+					return false;
+				}
+			}
+		}
+        if (myRow * myColumn - myAmMines == runs) {
             return true;
+        } else {
+            return false;
         }
     }
-
     /* Add other static methods as necessary */
     
     public static void main(String[] args) { 
@@ -166,13 +174,15 @@ public class Minesweeper {
         disperseMines(mine);
         printGrid();
         int cellSel = 0;
-        while (checkGameOver) {
+        while (!checkGameOver()) {
             System.out.print("Select the x coordinate: ");
             int xCord = Integer.parseInt(scanner.nextLine());
             System.out.print("Select the y coordinate: ");
             int yCord = Integer.parseInt(scanner.nextLine());
             selectedCells[cellSel][0] = xCord;
             selectedCells[cellSel][1] = yCord;
+			cellSel++;
+			runs++;
         }
     }
 }
