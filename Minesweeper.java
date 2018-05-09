@@ -101,14 +101,7 @@ public class Minesweeper {
      * have been revealed.
      */
     public static void revealGrid() {
-        for (int i = 0; i < myRow; i++){
-            for (int j = 0; j < myColumn; j++){
-                if (minePlaces[j][j] = grid[i][j]) {
-                    grid[i][j] = "*";
-                }
-                if (grid[i][j] = 
-            }
-        }
+        
     }
 
     /* 
@@ -133,7 +126,16 @@ public class Minesweeper {
          * Print Minesweeper grid after handling user input
          *
          */
-        if (grid[row][column] ==  
+        for (int i = 0; i < myRow; i++){
+            for (int j = 0; j < myColumn; j++){
+                if (minePlaces[i][j] = grid[i][j]) {
+                    grid[i][j] = "*";
+                }
+                if (grid[i][j] = selectedCell[i][i]) {
+                    grid[i][j] = ".";
+                }
+            }
+        }
     }
 
     /*
