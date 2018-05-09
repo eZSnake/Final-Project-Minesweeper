@@ -17,7 +17,8 @@ public class Cell {
      *               and has 0 adjacent mines.
      */
     public  Cell() {
-	    
+	mine = MINE;
+	numAdjacentMines = NUM_ADJ_MINES;
     }
 
     /* Mark this cell as containing a mine
