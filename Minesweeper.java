@@ -11,8 +11,8 @@ public class Minesweeper {
     private int myRow;
     private int myColumn;
     private int myAmMines;
-    private int minePlaces [][];
-    private int selectedCells [][];
+    private int[][] minePlaces;
+    private int[][] selectedCells;
 
     /* 
      * Create the grid and place mines in random locations.
@@ -25,7 +25,8 @@ public class Minesweeper {
      *      the need for ArrayOutOfBounds checking at the edges.
      */
     public static void initGrid(int rows, int columns) {
-        grid[rows + 2][columns + 2];
+        grid[rows + 1][columns + 1];
+        selectedCells[rows * columns][2];
         myRow = rows;
         myColumn = columns;
     }
@@ -37,14 +38,15 @@ public class Minesweeper {
      */
     public static void disperseMines(int amountMines) {
         myAmMines = amountMines;
-        int minePlaces [][] = [amountMines][2];
+        int minePlaces[][] = new int[amountMines][2];
         for (int i = 0; i < amountMines; i++) {
             Random rowr = new Random();
             Random columnc = new Random();
             int randRow = rowr.nextInt(myRow + 1);
             int randCol = columnc.nextInt(myColumn + 1);
             grid[randRow][randCol] = MINE;
-            minePlaces[][] = [randRow][randCol];
+            minePlaces[i][0] = randRow;
+            minePlaces[i][1] = randCol;
         }
     }
 
@@ -55,28 +57,28 @@ public class Minesweeper {
         int mines = 0;
         for (int i = 0; i < myRow; i++) {
             for (int j = 0; j < myColumn; j++) {
-                if (grid[i - 1][j - 1] == *) {
+                if (grid[i - 1][j - 1] == MINE) {
                     mines++;
                 }
-                if (grid[i][j - 1] == *) {
+                if (grid[i][j - 1] == MINE) {
                     mines++;
                 }
-                if (grid[i + 1][j - 1] == *) {
+                if (grid[i + 1][j - 1] == MINE) {
                     mines++;
                 }
-                if (grid[i + 1][j] == *) {
+                if (grid[i + 1][j] == MINE) {
                     mines++;
                 }
-                if (grid[i + 1][j + 1] == *) {
+                if (grid[i + 1][j + 1] == MINE) {
                     mines++;
                 }
-                if (grid[i][j + 1] == *) {
+                if (grid[i][j + 1] == MINE) {
                     mines++;
                 }
-                if (grid[i - 1][j + 1] == *) {
+                if (grid[i - 1][j + 1] == MINE) {
                     mines++;
                 }
-                if (grid[i - 1][j] == *) {
+                if (grid[i - 1][j] == MINE) {
                     mines++;
                 }
                 grid[i][j] = mines;
@@ -163,12 +165,14 @@ public class Minesweeper {
         int mine = Integer.parseInt(scanner.nextLine());
         disperseMines(mine);
         printGrid();
+        int cellSel = 0;
         while (checkGameOver) {
             System.out.print("Select the x coordinate: ");
             int xCord = Integer.parseInt(scanner.nextLine());
             System.out.print("Select the y coordinate: ");
             int yCord = Integer.parseInt(scanner.nextLine());
-            selectedCells[][] = [xCord][yCord];
+            selectedCells[cellSel][0] = xCord;
+            selectedCells[cellSel][1] = yCord;
         }
     }
 }
