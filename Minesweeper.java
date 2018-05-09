@@ -138,6 +138,15 @@ public class Minesweeper {
     /* Add other static methods as necessary */
     
     public static void main(String[] args) { 
-        
+        Scanner scanner = new scanner(System.in);
+        System.out.print("What would you like the height to be? ");
+        int height = Integer.parseInt(scanner.nextLine());
+        System.out.print("What would you like the width to be? ");
+        int width = Integer.parseInt(scanner.nextLine());
+        initGrid(width, height);
+        System.out.print("How many mines would you like? ");
+        int mine = Integer.parseInt(scanner.nextLine());
+        disperseMines(mine);
+        printGrid();
     }
 }
