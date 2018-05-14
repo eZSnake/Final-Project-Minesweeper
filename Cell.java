@@ -24,7 +24,7 @@ public class Cell {
     /* Mark this cell as containing a mine
      */
     public void setMine() {
-	    
+	    MINE;
     }
     
     /* Helper method which returns a char value corresponding to the integer parameter
@@ -40,7 +40,9 @@ public class Cell {
      *
      */
     public char getVal() {
-	    
+	    if (!HIDDEN_CELL) {
+		    getNumMines();
+	    }
     } 
 
     /* Mark this cell as revealed.
