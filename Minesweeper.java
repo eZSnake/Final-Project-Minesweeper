@@ -27,7 +27,7 @@ public class Minesweeper {
      *      the need for ArrayOutOfBounds checking at the edges.
      */
     public static void initGrid(int rows, int columns) {
-		Cell[][] grid = new Cell[rows + 1][columns + 1];
+	Cell[][] grid = new Cell[rows + 1][columns + 1];
         int[][] selectedCells = new int[rows * columns][2];
         myRow = rows;
         myColumn = columns;
