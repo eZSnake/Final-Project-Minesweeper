@@ -46,7 +46,7 @@ public class Minesweeper {
             Random columnc = new Random();
             int randRow = rowr.nextInt(myRow + 1);
             int randCol = columnc.nextInt(myColumn + 1);
-            grid[randRow][randCol] = MINE;
+            grid[randRow][randCol] = Cell.setMine();
             minePlaces[i][0] = randRow;
             minePlaces[i][1] = randCol;
         }
@@ -83,9 +83,9 @@ public class Minesweeper {
                 if (grid[i - 1][j] == MINE) {
                     mines++;
                 }
-                grid[i][j] = mines;
+                grid[i][j] = Cell.getAdjacentMines();
             }
-        }
+        }   
     }
  
     /*
@@ -132,11 +132,11 @@ public class Minesweeper {
          */
         for (int i = 0; i < myRow; i++){
             for (int j = 0; j < myColumn; j++){
-                if (minePlaces[i][j] = grid[i][j]) {
-                    grid[i][j] = "*";
+                if (minePlaces[i][j] == grid[i][j]) {
+                    grid[i][j] = '*';
                 }
-                if (grid[i][j] = selectedCell[i][i]) {
-                    grid[i][j] = ".";
+                if (grid[i][j] == selectedCell[i][i]) {
+                    grid[i][j] = Cell.reveal();
                 }
             }
         }
