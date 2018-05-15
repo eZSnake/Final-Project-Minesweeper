@@ -8,6 +8,12 @@ public class Minesweeper {
     
     // Add other static variables and constants you might need
     private static Cell[][] grid;
+    private int myRow;
+    private int myColumn;
+    private int myAmMines;
+    private int[][] minePlaces;
+    private int[][] selectedCells;
+    private int runs = 0;
 
     /* 
      * Create the grid and place mines in random locations.
@@ -20,6 +26,10 @@ public class Minesweeper {
      *      the need for ArrayOutOfBounds checking at the edges.
      */
     public static void initGrid(int rows, int columns) {
+        Cell[][] grid = new Cell[rows + 1][columns + 1];
+        int[][] selectedCells = new int[rows * columns][2];
+        myRow = rows;
+        myColumn = columns;
     }
     
     /*
@@ -28,12 +38,20 @@ public class Minesweeper {
      * @param amountMines   The number of mines to be set in the grid.
      */
     public static void disperseMines(int amountMines) {
+        for (int i = 0; i < amountMines; i++) {
+            Random rowr = new Random();
+            Random columnc = new Random();
+            int randRow = rowr.nextInt(myRow + 1);
+            int randCol = columnc.nextInt(myColumn + 1);
+            grid[randRow][randCol] = Cell.setMine();
+        }
     }
 
     /*
      * Updates each cell with the number of adjacent cells with mines
      */
     public static void adjacentMines() {
+        
     }
  
     /*
@@ -53,7 +71,7 @@ public class Minesweeper {
      * have been revealed.
      */
     public static void revealGrid() {
-
+        
     }
 
     /* 
@@ -86,13 +104,13 @@ public class Minesweeper {
      * @return  true if game over, false if not
      */
     public static boolean checkGameOver() {
-
+        
     }
 
     /* Add other static methods as necessary */
     
     public static void main(String[] args) { 
-
+        
     }
 }
 
