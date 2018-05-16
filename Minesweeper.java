@@ -11,9 +11,10 @@ public class Minesweeper {
     private int myRow;
     private int myColumn;
     private int myAmMines;
-    private int[][] minePlaces;
-    private int[][] selectedCells;
+    //private int[][] minePlaces;
+    //private int[][] selectedCells;
     private int runs = 0;
+    private boolean gameOver;
 
     /* 
      * Create the grid and place mines in random locations.
@@ -26,7 +27,7 @@ public class Minesweeper {
      *      the need for ArrayOutOfBounds checking at the edges.
      */
     public static void initGrid(int rows, int columns) {
-        Cell[][] grid = new Cell[rows + 1][columns + 1];
+        Cell[][] grid = new Cell[rows + 2][columns + 2];
         int[][] selectedCells = new int[rows * columns][2];
         myRow = rows;
         myColumn = columns;
@@ -58,8 +59,8 @@ public class Minesweeper {
      * Method to print Minesweeper grid
      */
     private static void printGrid() {
-        for (/* Your code here */) {
-            for (/* Your code here */) {
+        for (int i = 0; i < grid.length; i++) {
+            for (int j = 0; j < grid[0].length; j++) {
                 System.out.print(grid[i][j] + " ");
             }
             System.out.println();
@@ -96,7 +97,15 @@ public class Minesweeper {
          * Print Minesweeper grid after handling user input
          *
          */
-       
+        if (Cell.getVal() != HIDDEN_CELL) {
+            do nog
+        }
+        if (Cell.isMine()) {
+            gameOver = true;
+        }
+        if () {
+            Cell.reveal();
+        }
     }
 
     /*
@@ -110,7 +119,28 @@ public class Minesweeper {
     /* Add other static methods as necessary */
     
     public static void main(String[] args) { 
-        
+        gameOver = false;
+        Scanner scanner = new scanner(System.in);
+        System.out.print("What would you like the height to be? ");
+        int height = Integer.parseInt(scanner.nextLine());
+        System.out.print("What would you like the width to be? ");
+        int width = Integer.parseInt(scanner.nextLine());
+        initGrid(width, height);
+        System.out.print("How many mines would you like? ");
+        int mine = Integer.parseInt(scanner.nextLine());
+        disperseMines(mine);
+        printGrid();
+        while (!gameOver && !checkGameOver()) {
+            System.out.print("Select the x coordinate: ");
+            int xCord = Integer.parseInt(scanner.nextLine());
+            System.out.print("Select the y coordinate: ");
+            int yCord = Integer.parseInt(scanner.nextLine());
+            revealCell(xCord, yCord);
+        }
+        if (checkGameOver) {
+            System.out.println("congratulations, you win!");
+        } else {
+            System.out.println("Wow, you are really bad at this! -Rahul");
+        }
     }
 }
-
