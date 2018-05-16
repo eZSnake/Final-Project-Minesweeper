@@ -16,15 +16,16 @@ public class Cell {
     /* Constructor - sets up a default Cell. It is hidden, not a mine,
      *               and has 0 adjacent mines.
      */
-    public  Cell() {
-	mine = MINE;
-	numAdjacentMines = NUM_ADJ_MINES;
+    public Cell() {
+	     mine = false;
+	     numAdjacentMines = 0;
+		 revealed = false;
     }
 
     /* Mark this cell as containing a mine
      */
     public void setMine() {
-	    
+	      mine = true;
     }
     
     /* Helper method which returns a char value corresponding to the integer parameter
@@ -40,32 +41,40 @@ public class Cell {
      *
      */
     public char getVal() {
-	    
+	      if (revealed) {
+          	System.out.println(getNumMines(numMines));
+          } else {
+          	return HIDDEN_CELL;
+		  }  
     } 
 
     /* Mark this cell as revealed.
      */
     public void reveal() {
-	    
+		revealed = true;
     }
 
 	/* Store the number of neighboring mines there are to this cell.
 	 */
-	public void setAdjacentMines(int numMines) {
-		
+	  public void setAdjacentMines(int numMines) {
+		  numAdjacentMines = numMines;
     }
 
 	/* Returns the number of neighboring mines there are to this cell.
 	 */
-	public int getAdjacentMines() {
-		
+	  public int getAdjacentMines() {
+		  int mine = 0;
+      	  return setAdjacentMines(int numMines);
     }
     
     /* Checks if the cell is a mine or not
      * @return   true if it is a mine, false if it is not a mine
      */
     public boolean isMine() {
-	   
+	    if (mine) {
+			return true;
+		}	else {
+			return false;
+		}
     }
 }
-
