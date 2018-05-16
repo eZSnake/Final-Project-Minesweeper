@@ -74,10 +74,9 @@ public class Minesweeper {
     public static void revealGrid() {
         for (int i = 0; i < grid[0].length; i++) {
             for (int j = 0; j < grid.length' j++) {
-                if (grid.getVal != HIDDEN_CELL) {
-                    
+                if (grid.getVal() != HIDDEN_CELL) {
+                    grid[i][j].reveal;
                 }
-                 
             }
         }
         printGrid();
