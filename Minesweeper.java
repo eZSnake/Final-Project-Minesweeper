@@ -42,7 +42,7 @@ public class Minesweeper {
             Random columnc = new Random();
             int randRow = rowr.nextInt(myRow + 1);
             int randCol = columnc.nextInt(myColumn + 1);
-            grid[randRow][randCol] = grid[row][column].setMine();
+            grid[randRow][randCol].setMine();
         }
     }
 
@@ -118,7 +118,7 @@ public class Minesweeper {
      * @return  true if game over, false if not
      */
     public static boolean checkGameOver() {
-        int revC
+        int revC;
         for (int i = 1; i < grid[0].length; i++) {
             for (int j = 1; j < grid.length; j++) {
                if (grid[i][j].getVal() != HIDDEN_CELL && !grid[i][j].isMine()) {
