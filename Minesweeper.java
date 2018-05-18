@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.util.Random;
 
 public class Minesweeper { 
 
@@ -75,7 +76,7 @@ public class Minesweeper {
         for (int i = 0; i < grid[0].length; i++) {
             for (int j = 0; j < grid.length' j++) {
                 if (grid.getVal() != HIDDEN_CELL) {
-                    grid[i][j].reveal;
+                    grid[i][j].reveal();
                 }
             }
         }
@@ -105,12 +106,11 @@ public class Minesweeper {
          *
          */
         if (Cell.getVal() != HIDDEN_CELL) {
-            do nog
+            
         }
         if (Cell.isMine()) {
             gameOver = true;
-        }
-        if () {
+        } else {
             Cell.reveal();
         }
     }
