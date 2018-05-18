@@ -12,8 +12,6 @@ public class Minesweeper {
     private int myRow;
     private int myColumn;
     private int myAmMines;
-    //private int[][] minePlaces;
-    //private int[][] selectedCells;
     private int runs = 0;
     private boolean gameOver;
 
@@ -29,7 +27,6 @@ public class Minesweeper {
      */
     public static void initGrid(int rows, int columns) {
         Cell[][] grid = new Cell[rows + 2][columns + 2];
-        int[][] selectedCells = new int[rows * columns][2];
         myRow = rows;
         myColumn = columns;
     }
@@ -45,7 +42,7 @@ public class Minesweeper {
             Random columnc = new Random();
             int randRow = rowr.nextInt(myRow + 1);
             int randCol = columnc.nextInt(myColumn + 1);
-            grid[randRow][randCol] = Cell.setMine();
+            grid[randRow][randCol] = grid[row][column].setMine();
         }
     }
 
@@ -73,9 +70,9 @@ public class Minesweeper {
      * have been revealed.
      */
     public static void revealGrid() {
-        for (int i = 0; i < grid[0].length; i++) {
-            for (int j = 0; j < grid.length' j++) {
-                if (grid.getVal() != HIDDEN_CELL) {
+        for (int i = 1; i < grid[0].length; i++) {
+            for (int j = 1; j < grid.length; j++) {
+                if (grid[i][j].getVal() != HIDDEN_CELL) {
                     grid[i][j].reveal();
                 }
             }
@@ -105,13 +102,14 @@ public class Minesweeper {
          * Print Minesweeper grid after handling user input
          *
          */
-        if (Cell.getVal() != HIDDEN_CELL) {
-            
+        if (grid[row][column].getVal() != HIDDEN_CELL) {
+            return 0;
         }
-        if (Cell.isMine()) {
+        if (grid[row][column].isMine()) {
             gameOver = true;
+            return -1;
         } else {
-            Cell.reveal();
+            return 1;
         }
     }
 
@@ -120,7 +118,19 @@ public class Minesweeper {
      * @return  true if game over, false if not
      */
     public static boolean checkGameOver() {
-        
+        int revC
+        for (int i = 1; i < grid[0].length; i++) {
+            for (int j = 1; j < grid.length; j++) {
+               if (grid[i][j].getVal() != HIDDEN_CELL && !grid[i][j].isMine()) {
+                   revC++;
+               }
+            }
+        }
+        if ((myRow * myColumn) - myAmMines == revC) {
+            return true;
+        } else {
+           return false; 
+        }
     }
 
     /* Add other static methods as necessary */
@@ -144,7 +154,7 @@ public class Minesweeper {
             int yCord = Integer.parseInt(scanner.nextLine());
             revealCell(xCord, yCord);
         }
-        if (checkGameOver) {
+        if (checkGameOver()) {
             System.out.println("congratulations, you win!");
         } else {
             System.out.println("Wow, you are really bad at this! -Rahul");
