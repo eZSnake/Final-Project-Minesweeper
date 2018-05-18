@@ -64,7 +64,7 @@ public class Cell {
 	 */
 	  public int getAdjacentMines() {
 		  int mine = 0;
-      	  return setAdjacentMines(int numMines);
+      	  return setAdjacentMines(numAdjacentMines);
     }
     
     /* Checks if the cell is a mine or not
