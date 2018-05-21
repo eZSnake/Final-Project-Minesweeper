@@ -42,7 +42,7 @@ public class Cell {
      */
     public char getVal() {
 	      if (revealed) {
-          	System.out.println(getNumMines(numMines));
+          	return getNumMines(numAdjacentMines);
           } else {
           	return HIDDEN_CELL;
 		  }  
@@ -63,8 +63,8 @@ public class Cell {
 	/* Returns the number of neighboring mines there are to this cell.
 	 */
 	  public int getAdjacentMines() {
-		  int mine = 0;
-      	  return setAdjacentMines(numAdjacentMines);
+      	  setAdjacentMines(numAdjacentMines);
+		  return numAdjacentMines;
     }
     
     /* Checks if the cell is a mine or not
