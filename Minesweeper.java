@@ -72,7 +72,7 @@ public class Minesweeper {
     public static void revealGrid() {
         for (int i = 1; i < grid[0].length; i++) {
             for (int j = 1; j < grid.length; j++) {
-                if (grid[i][j].getVal() != HIDDEN_CELL) {
+                if (grid[i][j].getVal() == HIDDEN_CELL) {
                     grid[i][j].reveal();
                 }
             }
@@ -155,7 +155,7 @@ public class Minesweeper {
             revealCell(xCord, yCord);
         }
         if (checkGameOver()) {
-            System.out.println("congratulations, you win!");
+            System.out.println("Congratulations, you win!");
         } else {
             System.out.println("Wow, you are really bad at this! -Rahul");
         }
