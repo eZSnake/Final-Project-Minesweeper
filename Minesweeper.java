@@ -9,11 +9,11 @@ public class Minesweeper {
     
     // Add other static variables and constants you might need
     private static Cell[][] grid;
-    private int myRow;
-    private int myColumn;
-    private int myAmMines;
+    private static int myRow;
+    private static int myColumn;
+    private static int myAmMines;
     private int runs = 0;
-    private boolean gameOver;
+    private static boolean gameOver;
 
     /* 
      * Create the grid and place mines in random locations.
@@ -50,7 +50,37 @@ public class Minesweeper {
      * Updates each cell with the number of adjacent cells with mines
      */
     public static void adjacentMines() {
-        
+		int mines = 0;
+        for (int i = 0; i < grid[0].length; i++) {
+            for (int j = 0; j < grid.length; j++) {
+				if (grid[i - 1][j - 1] == '*') {
+							mines++;
+						}
+						if (grid[i][j - 1].getVal() == '*') {
+							mines++;
+						}
+						if (grid[i + 1][j - 1].getVal() == '*') {
+							mines++;
+						}
+						if (grid[i + 1][j].getVal() == '*') {
+							mines++;
+						}
+						if (grid[i + 1][j + 1].getVal() == '*') {
+							mines++;
+						}
+						if (grid[i][j + 1].getVal() == '*') {
+							mines++;
+						}
+						if (grid[i - 1][j + 1].getVal() == '*') {
+							mines++;
+						}
+						if (grid[i - 1][j].getVal() == '*') {
+							mines++;
+						}
+						grid[i][j].setAdjacentMines(mines);
+						grid[i][j].getAdjacentMines(mines);
+            }
+		}
     }
  
     /*
@@ -72,7 +102,7 @@ public class Minesweeper {
     public static void revealGrid() {
         for (int i = 1; i < grid[0].length; i++) {
             for (int j = 1; j < grid.length; j++) {
-                if (grid[i][j].getVal() == HIDDEN_CELL) {
+                if (grid[i][j].getVal() == '#') {
                     grid[i][j].reveal();
                 }
             }
@@ -102,7 +132,7 @@ public class Minesweeper {
          * Print Minesweeper grid after handling user input
          *
          */
-        if (grid[row][column].getVal() != HIDDEN_CELL) {
+        if (grid[row][column].getVal() != '#') {
             return 0;
         }
         if (grid[row][column].isMine()) {
@@ -118,10 +148,10 @@ public class Minesweeper {
      * @return  true if game over, false if not
      */
     public static boolean checkGameOver() {
-        int revC;
+        int revC = 0; // Revealed cells
         for (int i = 1; i < grid[0].length; i++) {
             for (int j = 1; j < grid.length; j++) {
-               if (grid[i][j].getVal() != HIDDEN_CELL && !grid[i][j].isMine()) {
+               if (grid[i][j].getVal() != '#' && !grid[i][j].isMine()) {
                    revC++;
                }
             }
@@ -137,7 +167,7 @@ public class Minesweeper {
     
     public static void main(String[] args) { 
         gameOver = false;
-        Scanner scanner = new scanner(System.in);
+        Scanner scanner = new Scanner(System.in);
         System.out.print("What would you like the height to be? ");
         int height = Integer.parseInt(scanner.nextLine());
         System.out.print("What would you like the width to be? ");
