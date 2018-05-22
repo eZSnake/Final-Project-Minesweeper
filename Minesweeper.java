@@ -50,37 +50,38 @@ public class Minesweeper {
      * Updates each cell with the number of adjacent cells with mines
      */
     public static void adjacentMines() {
-		int mines = 0;
+	int mines = 0;
         for (int i = 0; i < grid[0].length; i++) {
             for (int j = 0; j < grid.length; j++) {
-				if (grid[i - 1][j - 1] == '*') {
-							mines++;
-						}
-						if (grid[i][j - 1].getVal() == '*') {
-							mines++;
-						}
-						if (grid[i + 1][j - 1].getVal() == '*') {
-							mines++;
-						}
-						if (grid[i + 1][j].getVal() == '*') {
-							mines++;
-						}
-						if (grid[i + 1][j + 1].getVal() == '*') {
-							mines++;
-						}
-						if (grid[i][j + 1].getVal() == '*') {
-							mines++;
-						}
-						if (grid[i - 1][j + 1].getVal() == '*') {
-							mines++;
-						}
-						if (grid[i - 1][j].getVal() == '*') {
-							mines++;
-						}
-						grid[i][j].setAdjacentMines(mines);
-						grid[i][j].getAdjacentMines(mines);
-            }
+		if (grid[i - 1][j - 1] == '*') {
+			mines++;
 		}
+		if (grid[i][j - 1].getVal() == '*') {
+			mines++;
+		}
+		if (grid[i + 1][j - 1].getVal() == '*') {
+			mines++;
+		}
+		if (grid[i + 1][j].getVal() == '*') {
+			mines++;
+		}
+		if (grid[i + 1][j + 1].getVal() == '*') {
+			mines++;
+		}
+		if (grid[i][j + 1].getVal() == '*') {
+			mines++;
+		}
+		if (grid[i - 1][j + 1].getVal() == '*') {
+			mines++;
+		}
+		if (grid[i - 1][j].getVal() == '*') {
+			mines++;
+		}
+		grid[i][j].setAdjacentMines(mines);
+		grid[i][j].getAdjacentMines();
+		grid[i][j].getNumMines(mines);
+            }
+	}
     }
  
     /*
