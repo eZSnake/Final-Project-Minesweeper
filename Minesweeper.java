@@ -26,7 +26,7 @@ public class Minesweeper {
      *      the need for ArrayOutOfBounds checking at the edges.
      */
     public static void initGrid(int rows, int columns) {
-        Cell[][] grid = new Cell[rows + 2][columns + 2];
+        grid = new Cell[rows + 2][columns + 2];
         myRow = rows;
         myColumn = columns;
     }
@@ -42,6 +42,7 @@ public class Minesweeper {
             Random columnc = new Random();
             int randRow = rowr.nextInt(myRow + 1);
             int randCol = columnc.nextInt(myColumn + 1);
+			System.out.println("jj" + grid[randRow][randCol]);
             grid[randRow][randCol].setMine();
         }
     }
@@ -53,35 +54,33 @@ public class Minesweeper {
 	int mines = 0;
         for (int i = 0; i < grid[0].length; i++) {
             for (int j = 0; j < grid.length; j++) {
-		if (grid[i - 1][j - 1] == '*') {
-			mines++;
+				if (grid[i - 1][j - 1].getVal() == '*') {
+					mines++;
+				}
+				if (grid[i][j - 1].getVal() == '*') {
+					mines++;
+				}
+				if (grid[i + 1][j - 1].getVal() == '*') {
+					mines++;
+				}
+				if (grid[i + 1][j].getVal() == '*') {
+					mines++;
+				}
+				if (grid[i + 1][j + 1].getVal() == '*') {
+					mines++;
+				}
+				if (grid[i][j + 1].getVal() == '*') {
+					mines++;
+				}
+				if (grid[i - 1][j + 1].getVal() == '*') {
+					mines++;
+				}
+				if (grid[i - 1][j].getVal() == '*') {
+					mines++;
+				}
+				grid[i][j].setAdjacentMines(mines);
+			}
 		}
-		if (grid[i][j - 1].getVal() == '*') {
-			mines++;
-		}
-		if (grid[i + 1][j - 1].getVal() == '*') {
-			mines++;
-		}
-		if (grid[i + 1][j].getVal() == '*') {
-			mines++;
-		}
-		if (grid[i + 1][j + 1].getVal() == '*') {
-			mines++;
-		}
-		if (grid[i][j + 1].getVal() == '*') {
-			mines++;
-		}
-		if (grid[i - 1][j + 1].getVal() == '*') {
-			mines++;
-		}
-		if (grid[i - 1][j].getVal() == '*') {
-			mines++;
-		}
-		grid[i][j].setAdjacentMines(mines);
-		grid[i][j].getAdjacentMines();
-		grid[i][j].getNumMines(mines);
-            }
-	}
     }
  
     /*
