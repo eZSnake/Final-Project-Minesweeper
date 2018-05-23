@@ -29,6 +29,11 @@ public class Minesweeper {
         grid = new Cell[rows + 2][columns + 2];
         myRow = rows;
         myColumn = columns;
+	for (int i = 1; i < rows; i++) {
+		for (int j = 1; j < columns; j++) {
+			grid[i][j].Cell();
+		}
+	}
     }
     
     /*
@@ -40,8 +45,8 @@ public class Minesweeper {
         for (int i = 0; i < amountMines; i++) {
             Random rowr = new Random();
             Random columnc = new Random();
-            int randRow = rowr.nextInt(myRow + 1);
-            int randCol = columnc.nextInt(myColumn + 1);
+            int randRow = (rowr.nextInt(myRow)) + 1;
+            int randCol = (columnc.nextInt(myColumn)) + 1;
 			System.out.println("jj" + grid[randRow][randCol]);
             grid[randRow][randCol].setMine();
         }
