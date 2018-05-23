@@ -12,7 +12,6 @@ public class Minesweeper {
     private static int myRow;
     private static int myColumn;
     private static int myAmMines;
-    private int runs = 0;
     private static boolean gameOver;
 
     /* 
@@ -29,11 +28,11 @@ public class Minesweeper {
         grid = new Cell[rows + 2][columns + 2];
         myRow = rows;
         myColumn = columns;
-	for (int i = 1; i < rows; i++) {
-		for (int j = 1; j < columns; j++) {
-			grid[i][j].Cell();
+		for (int i = 1; i < rows + 1; i++) {
+			for (int j = 1; j < columns + 1; j++) {
+				grid[i][j] = new Cell();
+			}
 		}
-	}
     }
     
     /*
@@ -47,7 +46,6 @@ public class Minesweeper {
             Random columnc = new Random();
             int randRow = (rowr.nextInt(myRow)) + 1;
             int randCol = (columnc.nextInt(myColumn)) + 1;
-			System.out.println("jj" + grid[randRow][randCol]);
             grid[randRow][randCol].setMine();
         }
     }
@@ -92,9 +90,9 @@ public class Minesweeper {
      * Method to print Minesweeper grid
      */
     private static void printGrid() {
-        for (int i = 0; i < grid[0].length; i++) {
-            for (int j = 0; j < grid.length; j++) {
-                System.out.print(grid[i][j] + " ");
+        for (int i = 1; i < grid[0].length - 1; i++) {
+            for (int j = 1; j < grid.length - 1; j++) {
+                System.out.print(grid[i][j].getVal() + " ");
             }
             System.out.println();
         }
@@ -105,8 +103,8 @@ public class Minesweeper {
      * have been revealed.
      */
     public static void revealGrid() {
-        for (int i = 1; i < grid[0].length; i++) {
-            for (int j = 1; j < grid.length; j++) {
+        for (int i = 1; i < grid[0].length - 1; i++) {
+            for (int j = 1; j < grid.length - 1; j++) {
                 if (grid[i][j].getVal() == '#') {
                     grid[i][j].reveal();
                 }
@@ -137,14 +135,16 @@ public class Minesweeper {
          * Print Minesweeper grid after handling user input
          *
          */
-        if (grid[row][column].getVal() != '#') {
-            return 0;
+        if (grid[row][column].getVal() != '#') { //Do nothing
+            return GAME_NOTOVER;
         }
-        if (grid[row][column].isMine()) {
+        if (grid[row][column].isMine()) { //Game over
             gameOver = true;
-            return -1;
-        } else {
-            return 1;
+            return GAME_LOST;
+        } else { //Reveal cell
+			grid[row][column].reveal();
+			grid[row][column].getVal();
+            return GAME_NOTOVER;
         }
     }
 
@@ -154,11 +154,11 @@ public class Minesweeper {
      */
     public static boolean checkGameOver() {
         int revC = 0; // Revealed cells
-        for (int i = 1; i < grid[0].length; i++) {
-            for (int j = 1; j < grid.length; j++) {
-               if (grid[i][j].getVal() != '#' && !grid[i][j].isMine()) {
+        for (int i = 1; i < grid[0].length - 1; i++) {
+            for (int j = 1; j < grid.length - 1; j++) {
+                if (grid[i][j].getVal() != '#' && !grid[i][j].isMine()) {
                    revC++;
-               }
+                }
             }
         }
         if ((myRow * myColumn) - myAmMines == revC) {
@@ -178,21 +178,26 @@ public class Minesweeper {
         System.out.print("What would you like the width to be? ");
         int width = Integer.parseInt(scanner.nextLine());
         initGrid(width, height);
+		printGrid();
         System.out.print("How many mines would you like? ");
         int mine = Integer.parseInt(scanner.nextLine());
         disperseMines(mine);
         printGrid();
+		//revealGrid();
         while (!gameOver && !checkGameOver()) {
             System.out.print("Select the x coordinate: ");
             int xCord = Integer.parseInt(scanner.nextLine());
             System.out.print("Select the y coordinate: ");
             int yCord = Integer.parseInt(scanner.nextLine());
-            revealCell(xCord, yCord);
-        }
-        if (checkGameOver()) {
-            System.out.println("Congratulations, you win!");
-        } else {
-            System.out.println("Wow, you are really bad at this! -Rahul");
+			if (checkGameOver()) {
+				System.out.println("Congratulations, you win!");
+			} else if (gameOver) {
+				System.out.println("Wow, you are really bad at this! -Rahul");
+			}
+			if (!grid[xCord][yCord].isMine()) {
+				revealCell(xCord, yCord);
+				printGrid();
+			}
         }
     }
 }
