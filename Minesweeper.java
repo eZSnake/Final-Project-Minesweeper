@@ -110,7 +110,7 @@ public class Minesweeper {
     public static void revealGrid() {
         for (int i = 1; i < grid[0].length - 1; i++) {
             for (int j = 1; j < grid.length - 1; j++) {
-                if (grid[i][j].getVal() == '#') {
+                if (grid[i][j].getVal() == Cell.HIDDEN_CELL) {
                     grid[i][j].reveal();
                 }
             }
