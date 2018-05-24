@@ -75,10 +75,6 @@ public class Cell {
      * @return   true if it is a mine, false if it is not a mine
      */
     public boolean isMine() {
-		if (mine) {
-			return true;
-		} else {
-			return false;
-		}
+		return mine;
     }
 }
