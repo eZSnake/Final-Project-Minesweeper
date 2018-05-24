@@ -41,11 +41,16 @@ public class Cell {
      *
      */
     public char getVal() {
-	  if (revealed) {
-          	return getNumMines(numAdjacentMines);
-          } else {
+		if (revealed) {
+			if (mine) {
+				return MINE;
+			} else {
+				return getNumMines(numAdjacentMines);
+			}
+        } else {
           	return HIDDEN_CELL;
-	  }  
+			
+	  }
     } 
 
     /* Mark this cell as revealed.
