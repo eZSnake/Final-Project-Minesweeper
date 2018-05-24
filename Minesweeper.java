@@ -41,9 +41,9 @@ public class Minesweeper {
      * @param amountMines   The number of mines to be set in the grid.
      */
     public static void disperseMines(int amountMines) {
-        for (int i = 0; i < amountMines; i++) {
-            Random rowr = new Random();
+	    Random rowr = new Random();
             Random columnc = new Random();
+        for (int i = 0; i < amountMines; i++) {
             int randRow = (rowr.nextInt(myRow)) + 1;
             int randCol = (columnc.nextInt(myColumn)) + 1;
 			if (grid[randRow][randCol].isMine()) {
