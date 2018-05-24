@@ -47,7 +47,7 @@ public class Minesweeper {
             int randRow = (rowr.nextInt(myRow)) + 1;
             int randCol = (columnc.nextInt(myColumn)) + 1;
 			if (grid[randRow][randCol].isMine()) {
-				i--;
+				i--; //maybe make less suspicious
 			} else {
 				grid[randRow][randCol].setMine();
 			}
