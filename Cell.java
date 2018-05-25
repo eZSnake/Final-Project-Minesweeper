@@ -32,7 +32,7 @@ public class Cell {
      * numMines = 0 --> returns '.'
      * numMines = 1 --> returns '1', numMines = 2 --> returns '2' etc
      */
-    private char getNumMines(int numMines) {
+    public char getNumMines(int numMines) {
         return NUM_ADJ_MINES[numMines];
     }
 
@@ -49,8 +49,15 @@ public class Cell {
 			}
         } else {
           	return HIDDEN_CELL;
-			
-	  }
+	    }
+    } 
+	
+	public char getTotVal() {
+		if (mine) {
+			return MINE;
+		} else {
+			return getNumMines(numAdjacentMines);
+		}
     } 
 
     /* Mark this cell as revealed.
