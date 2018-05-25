@@ -47,7 +47,7 @@ public class Minesweeper {
             int randRow = (rowr.nextInt(myRow)) + 1;
             int randCol = (columnc.nextInt(myColumn)) + 1;
 			if (grid[randRow][randCol].isMine()) {
-				i--; //maybe make less suspicious
+				i--;
 			} else {
 				grid[randRow][randCol].setMine();
 			}
@@ -108,8 +108,8 @@ public class Minesweeper {
      * have been revealed.
      */
     public static void revealGrid() {
-        for (int i = 1; i < grid[0].length - 1; i++) {
-            for (int j = 1; j < grid.length - 1; j++) {
+        for (int i = 1; i <= myRow; i++) {
+            for (int j = 1; j <= myColumn; j++) {
                 if (grid[i][j].getVal() == Cell.HIDDEN_CELL) {
                     grid[i][j].reveal();
                 }
@@ -181,21 +181,25 @@ public class Minesweeper {
         int height = Integer.parseInt(scanner.nextLine());
         System.out.print("What would you like the width to be? ");
         int width = Integer.parseInt(scanner.nextLine());
-        initGrid(width, height);
+        initGrid(height, width);
 		printGrid();
         System.out.print("How many mines would you like? ");
         int mine = Integer.parseInt(scanner.nextLine());
         disperseMines(mine);
         printGrid();
 		adjacentMines();
-		//revealGrid(); if loop needed(x input 0 > reveal)
         while (!gameOver && !checkGameOver()) {
             System.out.print("Select the x coordinate: ");
             int xCord = Integer.parseInt(scanner.nextLine());
-            System.out.print("Select the y coordinate: ");
-            int yCord = Integer.parseInt(scanner.nextLine());
-			revealCell(xCord, yCord);
-			printGrid();
+			if (xCord == 0) {
+				revealGrid();
+				gameOver = true;
+			} else {
+				System.out.print("Select the y coordinate: ");
+				int yCord = Integer.parseInt(scanner.nextLine());
+				revealCell(yCord, xCord);
+				printGrid();
+			}
         }
 		if (checkGameOver()) {
 				System.out.println("Congratulations, you win!");
